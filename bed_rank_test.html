@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<title></title>
+
+<link rel="stylesheet" href="/ranking_style.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
+<script src="js/displayItems.js"></script>
+<script async>
+	var config = {
+		csv: {
+			base: {
+				url: "/csv/rank_base_copy.csv",
+				target_index: "商品URL",
+			},
+		},
+		prefix: {
+			src: "/aaaa",
+			href: "/bbb",
+		},
+        afterClass: 'aa',
+	}
+	displayItems("displayItem", config);
+</script>
+<style>
+	body {
+		width: 95%;
+		margin: 0 auto;
+		text-align: center;
+	}
+	img {
+		width: auto;
+		margin: 0 auto;
+	}
+	dt {
+		margin: 0 auto;
+		padding: 0;
+		
+	}
+	.toprank {
+		text-align: left;
+	}
+	.item_price {
+		width: 100%;
+	}
+	.toprank ul {
+		background: #fee6e7;
+	}
+	.to_list {
+	}
+	.to_list h1 {
+		color: #ffffff;
+		font-size: 20px;
+		background: #ed1c24;
+		border: none;
+		text-align: left;
+	}
+	.card {
+		opacity: 0;
+	}
+	.displayed {
+		opacity: 1!important;
+		transition-property: opacity;
+		transition-duration: 2s;
+	}
+</style>
+</head>
+
+<body>
+	<div class="container mt-5">
+		<div class="row target_container">
+			<div class="col-sm-6 col-md-6">
+			  	<div class="card img-thumbnail displayItem" id="a120375500045891">
+					<img class="card-img-top" data-src="0" data-alt="1">
+					<div class="card-body px-2 py-3">
+						<a class="card-title" data-href="0" data-text='0'></a>
+						<div>
+						<p class="card-text">大カテゴリ：<span data-text="1"></span></p>
+						<p class="card-text">中カテゴリ：<span data-text="2"></span></p>
+						<p class="card-text">オプション：<span data-text="4"></span></p>
+						<p class="card-text test" data-text="3" ></p>
+						<p class="card-text test" data-text="5" ></p>
+						</div>
+						<p class="mb-0"><a href="#" class="btn btn-primary btn-sm">ボタン</a> <a href="#" class="btn btn-secondary btn-sm">ボタン</a></p>
+					</div>
+				  </div>
+				  <div class="card img-thumbnail displayItem" id="a101051040104442">
+					<img class="card-img-top" data-src="0" data-alt="1">
+					<div class="card-body px-2 py-3">
+						<a class="card-title" data-href="0" data-text='0'></a>
+						<div>
+							<p class="card-text">大カテゴリ：<span data-text="1"></span></p>
+							<p class="card-text">中カテゴリ：<span data-text="2"></span></p>
+							<p class="card-text">オプション：<span data-text="4"></span></p>
+							<p class="card-text test" data-text="3" ></p>
+							<p class="card-text test" data-text="5" ></p>
+						</div>
+						<p class="mb-0"><a href="#" class="btn btn-primary btn-sm">ボタン</a> <a href="#" class="btn btn-secondary btn-sm">ボタン</a></p>
+					</div>
+			  	</div>
+			</div>
+
+		</div>
+	</div>
+
+</body>
+</html>
