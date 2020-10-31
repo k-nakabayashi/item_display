@@ -3,6 +3,8 @@
 
 ## JSの呼び出し方
 ```
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
 <script src="js/displayItems.js"></script>
 <script async>
 	var config = {
@@ -22,6 +24,7 @@
 </script>
 
 ```
+- jqueryは先に読み込ませてください。※slim版では動かないです。
 - displayItems.jsを読み込んだ後に、asyncでdisplayItemsを起動してください。  
 - target_indexは、csvの行を特定させるための列名です。
 - afterClassは、csv読み込み処理と表示処理が完了したら付与されるクラスです。
