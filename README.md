@@ -53,3 +53,21 @@
 
 - 指定しているデータの頭に'https:'という文字が付かなかれば、'prefix'は付きます。
 - 指定しているデータの頭に'https:'という文字が付くと、'prefix'は付きないです。
+
+
+アニメーション
+```
+    `<style>
+        #初期表示に当たるクラス
+        .displayItem {
+            opacity: 0;
+        }
+
+        #処理完了後に当たるクラス
+        .isDisplayed {
+            opacity: 1!important;
+            transition-property: opacity;
+            transition-duration: 2s;
+        }
+    </style>`
+```
