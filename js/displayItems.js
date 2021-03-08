@@ -86,7 +86,7 @@ var displayItems = function(target_container, config){
             });
             return base_csv;
         },
-    }
+    };
 
     formatData = function(csv){
 
@@ -102,7 +102,7 @@ var displayItems = function(target_container, config){
             var body_datas = [];
             _.forEach(datas, function(data){
                 var id = data[needle];
-                body_datas[id] = data;
+                body_datas[id] = data;// { 'PK1' : [], 'PK2': []}
             })
             csv.body = body_datas;
         }
@@ -112,72 +112,73 @@ var displayItems = function(target_container, config){
                 setHeader.call(this, data);
             },
         }
-    }
+    };
 
-    dom_func = {
-
-        setDom: function (value, key) {
-            var target_dom = $("#" + key);
-            var funcs = {
+    dom_func = function () {
+        var heade_length = Object.keys(base_csv.header).length,
+            funcs = {
                 text: innerText,
                 src: setAttr("src"),
                 href: setAttr("href"),
                 alt: setAttr("alt")
-            }
+            };
 
-            _.forEach(funcs, function(func, attr){
-                for (var i = 0; i < 5; ++i) {
-                    var data_attr = "*[data-"+ attr +"='" + i + "']";
-                    var children = target_dom.find(data_attr);
-                    if (!children.length) {
-                        continue;
-                    }
-                    _.forEach(children, function(child){
-                        var child_dom = $(child);
-                        var id = child_dom.data(attr);
-                        func(child_dom[0], value[id]);
-                    })
+        function innerText(dom, txt){
+            dom.innerText = txt;
+        }
+        
+        function setAttr(attr) {
+            return function(dom, prop){
+    
+                if (hasPrefix(attr) && !hasFullPath(prop)) {
+                    $(dom).attr(attr, config.prefix[attr] + "/" + prop);
+                } else {
+                    $(dom).attr(attr, prop);
                 }
-            });
-            
-            target_dom.addClass('isDisplayed');
-            if (config.hasOwnProperty('afterClass')) {
-                target_dom.addClass(config.afterClass);
             }
-            
+    
+            function hasPrefix() {
+                return config.prefix.hasOwnProperty(attr);
+            }
+    
+            function hasFullPath(prop) {
+                return prop.indexOf("https:") === 0;
+            }
+        }
 
-            function innerText(dom, txt){
-                dom.innerText = txt;
-            }
-            
-            function setAttr(attr) {
-                return function(dom, prop){
-        
-                    if (hasPrefix(attr) && !hasFullPath(prop)) {
-                        $(dom).attr(attr, config.prefix[attr] + "/" + prop);
-                    } else {
-                        $(dom).attr(attr, prop);
-        
+        return {
+            setDom: function (value, key) {
+                var target_dom = $("#" + key);
+                _.forEach(funcs, function(func, attr){
+                    for (var i = 0; i < heade_length; ++i) {
+                        var data_attr = "*[data-"+ attr +"='" + i + "']";
+                        var children = target_dom.find(data_attr);
+                        if (!children.length) {
+                            continue;
+                        }
+                        _.forEach(children, function(child){
+                            var child_dom = $(child);
+                            var id = child_dom.data(attr);
+                            func(child_dom[0], value[id]);
+                        })
                     }
-                }
-        
-                function hasPrefix() {
-                    return config.prefix.hasOwnProperty(attr);
-                }
-        
-                function hasFullPath(prop) {
-                    return prop.indexOf("https:") === 0;
+                });
+                
+                target_dom.addClass('isDisplayed');
+                if (config.hasOwnProperty('afterClass')) {
+                    target_dom.addClass(config.afterClass);
                 }
             }
         }
-    }
+    };
 
     boot = function (formated_data) {
-        var keys = Object.keys(formated_data.body);
+        var keys = Object.keys(formated_data.body),
+            dom = dom_func();
         _.map(keys, function(key){
-            dom_func.setDom(formated_data.body[key], key);
+            dom.setDom(formated_data.body[key], key);
         });
-    }
+    };
 
     init = async function() {
         
@@ -187,7 +188,7 @@ var displayItems = function(target_container, config){
         $(document).ready(function(){
             //csvの整形
             var formatData_for_base = formatData(base_csv);
-            formatData_for_base.setFormated_Date(data1);
+            formatData_for_base.setFormated_Date(data1);//変数csvに、ヘッダーとPKとボディが設定される
 
             //base_csvから対象を絞り込み
             csv_func.setTargets(base_csv);
@@ -196,7 +197,7 @@ var displayItems = function(target_container, config){
             // var formated_data = formatData(joined_csv);
             boot(base_csv);
         })
-    }
+    };
     init();
 
 }
